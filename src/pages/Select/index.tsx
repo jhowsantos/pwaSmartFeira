@@ -11,7 +11,7 @@ function handleWhatsApp() {
 }
 
 const Select: React.FC = () => {
-  const [qrCode, setQrCode] = useState('furry-time');
+  const [qrCode, setQrCode] = useState('https://wa.me/551148377404?text=furry-time');
 
   return(
     <View style={styles.container}>

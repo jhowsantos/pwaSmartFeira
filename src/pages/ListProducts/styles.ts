@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
     borderColor: '#808080',
     shadowColor: '#808080',
     borderRadius: 35,
-    marginTop: 10,
-    elevation: 5
+    marginTop: 15,
+    elevation: 3
   },
 
   containerImage: {
@@ -58,10 +58,12 @@ const styles = StyleSheet.create({
     height: 60,
     marginLeft: 10,
     paddingTop: 5,
+    alignItems: 'flex-start',
   },
 
   name: {
     fontSize: 15,
+    fontWeight: 'bold',
     color: '#E25B45'
   },
 
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    width: 172,
+    width: 220,
     height: 54,
     borderRadius: 10,
     alignItems: 'center',
