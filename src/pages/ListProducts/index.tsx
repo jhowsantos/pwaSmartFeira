@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Linking, Image, Platform, Alert } from 'react-native';
+import { View, Text, Linking, Image, Platform } from 'react-native';
 import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
 
 import { Feather as Icon } from '@expo/vector-icons';
@@ -28,6 +28,7 @@ const ListProducts: React.FC = () => {
   const [tomate, setTomate] = useState<ProductResponse>({} as ProductResponse)
 
   const [animate, setAnimate] = useState<boolean>(true);
+  const [textButton, setTextButton] = useState<string>('Comprar');
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -71,10 +72,6 @@ const ListProducts: React.FC = () => {
     }
   }
 
-  function returnWhatsApp() {
-    Linking.openURL(`whatsapp://send?phone=551148377404`);
-  }
-
   async function sendRequest(): Promise<void> {
 
     const request = {
@@ -99,25 +96,14 @@ const ListProducts: React.FC = () => {
       ]
     }
 
-    const response = await api.post('/Feirante/enviar-pedido-zap', request);
-    console.log(response)
+    await api.post('/Feirante/enviar-pedido-zap', request);
 
-    if(response.status === 200){
-      showAlert();
-    }
+    setTextButton('Pedido enviado com sucesso');
+
+    Linking.openURL(`whatsapp://send?phone=551148377404`);
 
   }
 
-  function showAlert(){
-    Alert.alert(
-      "Pedido",
-      "Pedido enviado com sucesso",
-      [
-        { text: "Confirmar", onPress: () => returnWhatsApp()}
-      ],
-      { cancelable: false }
-    );
-  }
 
   if(animate){
     return(
@@ -242,7 +228,7 @@ const ListProducts: React.FC = () => {
               onPress={sendRequest}
               style={styles.button}
             >
-            <Text style={styles.textButton}>Comprar</Text>
+            <Text style={styles.textButton}>{textButton}</Text>
           </RectButton>
         </View>
       </View>
