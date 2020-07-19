@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Image, Platform } from 'react-native';
+import { View, Text, Image, Platform } from 'react-native';
 import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
@@ -24,6 +24,11 @@ const ListProducts: React.FC = () => {
   const [qtdBatata, setQtdBatata] = useState<number>(0);
   const [products, setProducts] = useState<ProductResponse[]>([])
 
+  const [banana, setBanana] = useState<ProductResponse>({} as ProductResponse)
+  const [batata, setBatata] = useState<ProductResponse>({} as ProductResponse)
+  const [laranja, setLaranja] = useState<ProductResponse>({} as ProductResponse)
+  const [tomate, setTomate] = useState<ProductResponse>({} as ProductResponse)
+
   const [animate, setAnimate] = useState<boolean>(true);
 
   const navigation = useNavigation();
@@ -32,19 +37,42 @@ const ListProducts: React.FC = () => {
     const loadProducts = async () => {
       const response = await api.get('/Produto');
 
-      setProducts(response.data);
+      setBanana(response.data[0]);
+      setBatata(response.data[1]);
+      setLaranja(response.data[2]);
+      setTomate(response.data[3]);
       setAnimate(false);
     };
 
     loadProducts();
   },[])
 
-  function addQuantity() {
-    setQtdLaranja(qtdLaranja+1);
+  function addQuantity(tipo: string): void {
+
+    switch(tipo) {
+      case 'Banana':
+        return setQtdBanana(qtdBanana+1);
+      case 'Batata':
+        return setQtdBatata(qtdBatata+1);
+      case 'Laranja':
+        return setQtdLaranja(qtdLaranja+1);
+      case 'Tomate':
+        return setQtdTomate(qtdTomate+1);
+    }
   }
 
-  function subQuantity() {
-    setQtdLaranja(qtdLaranja-1);
+  function subQuantity(tipo: string): void {
+
+    switch(tipo) {
+      case 'Banana':
+        return setQtdBanana(qtdBanana-1);
+      case 'Batata':
+        return setQtdBatata(qtdBatata-1);
+      case 'Laranja':
+        return setQtdLaranja(qtdLaranja-1);
+      case 'Tomate':
+        return setQtdTomate(qtdTomate-1);
+    }
   }
 
 
@@ -72,35 +100,98 @@ const ListProducts: React.FC = () => {
           <Text style={styles.textHeader}>Produtos para você</Text>
         </View>
         <View style={styles.containerList}>
-          <FlatList
-            contentContainerStyle={{ padding: 24, alignItems: 'center', justifyContent: 'center' }}
-            data={products}
-            keyExtractor={product => product.produtoId.toString()}
-            renderItem={({ item: product}) => (
-              <View style={styles.product}>
-                <View style={styles.containerImage}>
-                  <Image style={styles.image} source={{ uri: product.urlImagem }} /> 
-                </View>
-  
-                <View style={styles.containerInfos}>
-                  <Text style={styles.name}>{product.nome}</Text>
-                  <Text style={styles.unidade}>{product.unidade}</Text>
-                </View>
-  
-                <View style={styles.containerQuantity}>
-                  <TouchableOpacity onPress={addQuantity}>
-                    <Icon name='plus-circle' style={styles.qtdButton} />
-                  </TouchableOpacity>
-                  
-                  <Text style={styles.qtdProduto}>{qtdLaranja}</Text>
-                  
-                  <TouchableOpacity onPress={subQuantity}>
-                    <Icon name='minus-circle' style={styles.qtdButton} />
-                  </TouchableOpacity>
-                </View>
-              </View>
-            )}
-          />
+          <View style={styles.product}>
+            <View style={styles.containerImage}>
+              <Image style={styles.image} source={{ uri: banana.urlImagem }} /> 
+            </View>
+
+            <View style={styles.containerInfos}>
+              <Text style={styles.name}>{banana.nome}</Text>
+              <Text style={styles.unidade}>{banana.unidade}</Text>
+            </View>
+
+            <View style={styles.containerQuantity}>
+              <TouchableOpacity onPress={() => addQuantity(banana.nome)}>
+                <Icon name='plus-circle' style={styles.qtdButton} />
+              </TouchableOpacity>
+              
+              <Text style={styles.qtdProduto}>{qtdBanana}</Text>
+              
+              <TouchableOpacity onPress={() => subQuantity(banana.nome)}>
+                <Icon name='minus-circle' style={styles.qtdButton} />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <View style={styles.product}>
+            <View style={styles.containerImage}>
+              <Image style={styles.image} source={{ uri: batata.urlImagem }} /> 
+            </View>
+
+            <View style={styles.containerInfos}>
+              <Text style={styles.name}>{batata.nome}</Text>
+              <Text style={styles.unidade}>{batata.unidade}</Text>
+            </View>
+
+            <View style={styles.containerQuantity}>
+              <TouchableOpacity onPress={() => addQuantity(batata.nome)}>
+                <Icon name='plus-circle' style={styles.qtdButton} />
+              </TouchableOpacity>
+              
+              <Text style={styles.qtdProduto}>{qtdBatata}</Text>
+              
+              <TouchableOpacity onPress={() => subQuantity(batata.nome)}>
+                <Icon name='minus-circle' style={styles.qtdButton} />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <View style={styles.product}>
+            <View style={styles.containerImage}>
+              <Image style={styles.image} source={{ uri: laranja.urlImagem }} /> 
+            </View>
+
+            <View style={styles.containerInfos}>
+              <Text style={styles.name}>{laranja.nome}</Text>
+              <Text style={styles.unidade}>{laranja.unidade}</Text>
+            </View>
+
+            <View style={styles.containerQuantity}>
+              <TouchableOpacity onPress={() => addQuantity(laranja.nome)}>
+                <Icon name='plus-circle' style={styles.qtdButton} />
+              </TouchableOpacity>
+              
+              <Text style={styles.qtdProduto}>{qtdLaranja}</Text>
+              
+              <TouchableOpacity onPress={() => subQuantity(laranja.nome)}>
+                <Icon name='minus-circle' style={styles.qtdButton} />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <View style={styles.product}>
+            <View style={styles.containerImage}>
+              <Image style={styles.image} source={{ uri: tomate.urlImagem }} /> 
+            </View>
+
+            <View style={styles.containerInfos}>
+              <Text style={styles.name}>{tomate.nome}</Text>
+              <Text style={styles.unidade}>{tomate.unidade}</Text>
+            </View>
+
+            <View style={styles.containerQuantity}>
+              <TouchableOpacity onPress={() => addQuantity(tomate.nome)}>
+                <Icon name='plus-circle' style={styles.qtdButton} />
+              </TouchableOpacity>
+              
+              <Text style={styles.qtdProduto}>{qtdTomate}</Text>
+              
+              <TouchableOpacity onPress={() => subQuantity(tomate.nome)}>
+                <Icon name='minus-circle' style={styles.qtdButton} />
+              </TouchableOpacity>
+            </View>
+          </View>
+
         </View>
   
         <View style={styles.containerButton}>

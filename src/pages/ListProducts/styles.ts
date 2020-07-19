@@ -43,14 +43,14 @@ const styles = StyleSheet.create({
   },
 
   containerImage: {
-    width: 60,
-    height: 60,
+    width: 45,
+    height: 45,
     marginLeft: 10,
   },
 
   image: {
-    width: 60,
-    height: 60,
+    width: 45,
+    height: 45,
   },
 
   containerInfos: {
