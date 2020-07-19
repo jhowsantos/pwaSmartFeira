@@ -6,7 +6,7 @@ const { width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#b0f3b0',
+    backgroundColor: '#DCF3EF',
   },
 
   header: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 
   containerTitle: {
     width: width,
-    height: 54,
+    height: 60,
     marginTop: 24,
     alignItems: 'center',
     justifyContent: 'center',
@@ -29,18 +29,20 @@ const styles = StyleSheet.create({
   firstTitle: {
     fontSize: 30,
     fontWeight: '700',
-    color: '#d3686b'
+    color: '#E25B45'
   },
 
   secondTitle: {
     fontSize: 30,
     fontWeight: '700',
-    color: '#ffa500'
+    color: '#FA6D3F',
+    paddingRight: 10
   },
 
   image: {
-    width: 35,
-    height: 35,
+    width: 26,
+    height: 52,
+    marginBottom: 15
   },
 
   title: {
@@ -50,6 +52,7 @@ const styles = StyleSheet.create({
 
   subTitle: {
     fontSize: 16,
+    color: '#796F6F',
     textAlign: 'center'
   },
 
@@ -68,16 +71,16 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    width: width * 0.7,
+    width: 172,
     height: 54,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#d3686b'
+    backgroundColor: '#E25B45'
   },
 
   textButton: {
-    color: '#fff',
+    color: '#EFEDED',
     fontSize: 16,
   }
 

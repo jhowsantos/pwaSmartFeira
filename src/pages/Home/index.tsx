@@ -22,14 +22,15 @@ const Home: React.FC = () => {
           <Text style={styles.secondTitle}>Feira</Text>
           <Image source={require('../../assets/abacaxi.png')} style={styles.image} />
         </View>
-        <Text style={styles.subTitle}>Frutas, legumes e verduras na palma da sua mão</Text>
+        <Text style={styles.subTitle}>Alimento saudável sem sair de casa</Text>
       </View>
 
       <View style={styles.containerQrCode}>
         <QRCode 
           value={qrCode}
           size={180}
-          backgroundColor='#b0f3b0'
+          backgroundColor='#DCF3EF'
+          color='#796F6F'
         />
       </View>
 

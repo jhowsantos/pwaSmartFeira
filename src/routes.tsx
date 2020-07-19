@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 export default function Routes() {
 
   const deepLink: LinkingOptions = {
-    prefixes: ['http://localhost:19006/', 'localhost:19006/'],
+    prefixes: ['https://smart-feira.netlify.app/', 'smart-feira.netlify.app/'],
     config: {
       screens: {
         Home: 'home',
