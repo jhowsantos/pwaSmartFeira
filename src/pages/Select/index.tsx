@@ -1,6 +1,5 @@
 import React, { useState} from 'react';
-import { View, Text, Image } from 'react-native';
-import { Linking} from 'react-native';
+import { View, Text, Image, Linking } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import QRCode from 'react-native-qrcode-svg';
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, Platform } from 'react-native';
+import { View, Text, Linking, Image, Platform, Alert } from 'react-native';
 import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
 
 import { Feather as Icon } from '@expo/vector-icons';
 import LottieView from "lottie-react-native";
@@ -22,7 +21,6 @@ const ListProducts: React.FC = () => {
   const [qtdLaranja, setQtdLaranja] = useState<number>(0);
   const [qtdBanana, setQtdBanana] = useState<number>(0);
   const [qtdBatata, setQtdBatata] = useState<number>(0);
-  const [products, setProducts] = useState<ProductResponse[]>([])
 
   const [banana, setBanana] = useState<ProductResponse>({} as ProductResponse)
   const [batata, setBatata] = useState<ProductResponse>({} as ProductResponse)
@@ -30,8 +28,6 @@ const ListProducts: React.FC = () => {
   const [tomate, setTomate] = useState<ProductResponse>({} as ProductResponse)
 
   const [animate, setAnimate] = useState<boolean>(true);
-
-  const navigation = useNavigation();
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -75,6 +71,53 @@ const ListProducts: React.FC = () => {
     }
   }
 
+  function returnWhatsApp() {
+    Linking.openURL(`whatsapp://send?phone=551148377404`);
+  }
+
+  async function sendRequest(): Promise<void> {
+
+    const request = {
+      "pedidoId": 0,
+      "feiranteId": 1,
+      "clienteId": 4,
+      "itensPedidoDTO": [
+        {
+          "itemPedidoId": 0,
+          "feiranteProdutoId": 3,
+          "quantidade": 2,
+          "valor": 1.50,
+          "pedidoId": 0
+        },
+        {
+          "itemPedidoId": 0,
+          "feiranteProdutoId": 2,
+          "quantidade": 2,
+          "valor": 2.00,
+          "pedidoId": 0
+        }
+      ]
+    }
+
+    const response = await api.post('/Feirante/enviar-pedido-zap', request);
+    console.log(response)
+
+    if(response.status === 200){
+      showAlert();
+    }
+
+  }
+
+  function showAlert(){
+    Alert.alert(
+      "Pedido",
+      "Pedido enviado com sucesso",
+      [
+        { text: "Confirmar", onPress: () => returnWhatsApp()}
+      ],
+      { cancelable: false }
+    );
+  }
 
   if(animate){
     return(
@@ -196,7 +239,7 @@ const ListProducts: React.FC = () => {
   
         <View style={styles.containerButton}>
           <RectButton
-              onPress={() => {}}
+              onPress={sendRequest}
               style={styles.button}
             >
             <Text style={styles.textButton}>Comprar</Text>
