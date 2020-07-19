@@ -6,21 +6,21 @@ const { width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#DCF3EF',
+    backgroundColor: '#fff',
   },
 
   header: {
     flex: 1,
     paddingHorizontal: 16,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
     width: width,
+    backgroundColor: '#fff',
   },
 
   containerTitle: {
     width: 210,
     height: 60,
-    marginTop: 24,
+    marginTop: 36,
+    paddingLeft: 26,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
@@ -46,24 +46,40 @@ const styles = StyleSheet.create({
   },
 
   subTitle: {
-    width: 210,
+    width: 260,
     fontSize: 16,
-    color: '#796F6F',
-    textAlign: 'center'
+    color: '#9F9898',
+    paddingLeft: 26
+  },
+
+
+  aroundQrCode: {
+    width: 170,
+    height: 170,
+    marginBottom: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
   },
 
   containerButton: {
     flex: 1,
+    height: height * 0.6,
     width: width,
     alignItems: 'center',
     justifyContent: 'center',
+    borderTopLeftRadius: 80,
+    borderTopRightRadius: 80,
+    backgroundColor: '#89D5C94B',
+    position: 'absolute',
+    bottom: 0,
   },
-
+  
   button: {
-    width: 172,
+    width: 284,
     height: 54,
     borderRadius: 10,
-    marginTop: 50,
+    marginBottom: 12,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#E25B45'
@@ -72,7 +88,22 @@ const styles = StyleSheet.create({
   textButton: {
     color: '#EFEDED',
     fontSize: 16,
-  }
+  },
+
+  registerButton: {
+    width: 284,
+    height: 54,
+    borderRadius: 10,
+    marginBottom: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FAC172'
+  },
+
+  textResgister: {
+    color: '#E25B45',
+    fontSize: 16,
+  },
 
 });
 

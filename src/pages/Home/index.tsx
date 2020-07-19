@@ -1,17 +1,14 @@
 import React, { useState} from 'react';
 import { View, Text, Image } from 'react-native';
-import { Linking} from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-import QRCode from 'react-native-qrcode-svg';
+import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
-function handleWhatsApp() {
-  Linking.openURL(`whatsapp://send?phone=551148377404&text=furry-time`);
-}
-
 const Home: React.FC = () => {
   const [qrCode, setQrCode] = useState('furry-time');
+
+  const navigation = useNavigation();
 
   return(
     <View style={styles.container}>
@@ -22,20 +19,12 @@ const Home: React.FC = () => {
           <Text style={styles.secondTitle}>Feira</Text>
           <Image source={require('../../assets/abacaxi.png')} style={styles.image} />
         </View>
-        <Text style={styles.subTitle}>Frutas, legumes e verduras na palma da sua mão</Text>
-      </View>
-
-      <View style={styles.containerQrCode}>
-        <QRCode 
-          value={qrCode}
-          size={180}
-          backgroundColor='#b0f3b0'
-        />
+        <Text style={styles.subTitle}>Alimento saudável sem sair de casa</Text>
       </View>
 
       <View style={styles.containerButton}>
         <RectButton
-          onPress={handleWhatsApp}
+          onPress={() => navigation.navigate('Select')}
           style={styles.button}
         >
           <Text style={styles.textButton}>Começar</Text>

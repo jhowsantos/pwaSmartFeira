@@ -6,58 +6,90 @@ const { width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#b0f3b0',
+    backgroundColor: '#fff',
   },
 
   header: {
-    flex: 2,
-    paddingHorizontal: 16,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    width: width,
+    height: 110,
+    borderBottomRightRadius: 50,
+    borderBottomLeftRadius: 50,
+    backgroundColor: '#89D5C94B',
   },
 
-  containerTitle: {
-    width: width,
-    height: 54,
-    marginTop: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
+  textHeader: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#A09490',
+    paddingTop: 60,
+    paddingLeft: 40
+  },
+
+  containerList: {
+    flex: 3,
+    backgroundColor: '#fff',
+  },
+
+  product: {
     flexDirection: 'row',
+    alignItems: 'center',
+    width: 320,
+    height: 60,
+    borderWidth: 0.05,
+    borderColor: '#808080',
+    shadowColor: '#808080',
+    borderRadius: 35,
+    marginTop: 15,
+    elevation: 3
   },
 
-  firstTitle: {
-    fontSize: 30,
-    fontWeight: '700',
-    color: '#d3686b'
-  },
-
-  secondTitle: {
-    fontSize: 30,
-    fontWeight: '700',
-    color: '#ffa500'
+  containerImage: {
+    width: 45,
+    height: 45,
+    marginLeft: 10,
   },
 
   image: {
-    width: 35,
-    height: 35,
+    width: 45,
+    height: 45,
   },
 
-  title: {
-    fontSize: 28,
+  containerInfos: {
+    width: 140,
+    height: 60,
+    marginLeft: 10,
+    paddingTop: 5,
+    alignItems: 'flex-start',
+  },
+
+  name: {
+    fontSize: 15,
     fontWeight: 'bold',
+    color: '#E25B45'
   },
 
-  subTitle: {
-    fontSize: 16,
-    textAlign: 'center'
+  unidade: {
+    paddingTop: 5,
+    fontSize: 15,
+    color: '#9B9998'
   },
 
-  containerQrCode: {
-    flex: 2,
-    width: width,
-    alignItems: 'center',
-    justifyContent: 'center',
+  containerQuantity: {
+    width: 90,
+    height: 30,
+    marginRight: 10,
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+  },
+
+  qtdProduto: {
+    fontSize: 20,
+    paddingTop: 2,
+    color: '#BAB2B2'
+  },
+
+  qtdButton: {
+    fontSize: 30,
+    color: '#89D5C9'
   },
 
   containerButton: {
@@ -65,19 +97,20 @@ const styles = StyleSheet.create({
     width: width,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor :'#fff'
   },
 
   button: {
-    width: width * 0.7,
+    width: 220,
     height: 54,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#d3686b'
+    backgroundColor: '#E25B45'
   },
 
   textButton: {
-    color: '#fff',
+    color: '#EFEDED',
     fontSize: 16,
   }
 
