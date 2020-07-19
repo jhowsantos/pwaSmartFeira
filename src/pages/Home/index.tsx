@@ -1,13 +1,14 @@
 import React, { useState} from 'react';
 import { View, Text, Image } from 'react-native';
-import { Linking} from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-import QRCode from 'react-native-qrcode-svg';
+import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
-const Home: React.FC = ({ navigation }) => {
+const Home: React.FC = () => {
   const [qrCode, setQrCode] = useState('furry-time');
+
+  const navigation = useNavigation();
 
   return(
     <View style={styles.container}>

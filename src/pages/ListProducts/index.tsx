@@ -1,61 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, Platform } from 'react-native';
 import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+
 import { Feather as Icon } from '@expo/vector-icons';
 import LottieView from "lottie-react-native";
 
 import styles from './styles';
+import api from '../../services';
+
+interface ProductResponse {
+  produtoId: string;
+  nome: string;
+  unidade: string;
+  urlImagem: string;
+  feiranteProdutos: string | null;
+}
 
 const ListProducts: React.FC = () => {
   const [qtdTomate, setQtdTomate] = useState<number>(0);
   const [qtdLaranja, setQtdLaranja] = useState<number>(0);
   const [qtdBanana, setQtdBanana] = useState<number>(0);
   const [qtdBatata, setQtdBatata] = useState<number>(0);
+  const [products, setProducts] = useState<ProductResponse[]>([])
 
   const [animate, setAnimate] = useState<boolean>(true);
 
+  const navigation = useNavigation();
+
   useEffect(() => {
-    const loadProducts = () => {
-      const timer = setTimeout(() => {
-  
-        setAnimate(false);
-      }, 3000);
-      return () => clearTimeout(timer);
+    const loadProducts = async () => {
+      const response = await api.get('/Produto');
+
+      setProducts(response.data);
+      setAnimate(false);
     };
 
     loadProducts();
   },[])
 
-  const products = [
-    {
-      id: 1,
-      name: 'Tomate',
-      image: '../../assets/tomate.png',
-      unidade: '1 kg',
-    },
-    {
-      id: 2,
-      name: 'Laranja',
-      image: '../../assets/laranja.png',
-      unidade: '1 unidade',
-    },
-    {
-      id: 3,
-      name: 'Banana',
-      image: '../../assets/banana.png',
-      unidade: '1 unidade',
-    },
-    {
-      id: 4,
-      name: 'Batata',
-      image: '../../assets/batata.png',
-      unidade: '1 kg',
-    }
-  ]
-
   function addQuantity() {
-    setQtdLaranja(1);
+    setQtdLaranja(qtdLaranja+1);
   }
+
+  function subQuantity() {
+    setQtdLaranja(qtdLaranja-1);
+  }
+
 
   if(animate){
     return(
@@ -82,17 +73,17 @@ const ListProducts: React.FC = () => {
         </View>
         <View style={styles.containerList}>
           <FlatList
-            contentContainerStyle={{ padding: 24 }}
+            contentContainerStyle={{ padding: 24, alignItems: 'center', justifyContent: 'center' }}
             data={products}
-            keyExtractor={product => product.id.toString()}
+            keyExtractor={product => product.produtoId.toString()}
             renderItem={({ item: product}) => (
               <View style={styles.product}>
                 <View style={styles.containerImage}>
-                  <Image style={styles.image} source={require('../../assets/tomate.png')} /> 
+                  <Image style={styles.image} source={{ uri: product.urlImagem }} /> 
                 </View>
   
                 <View style={styles.containerInfos}>
-                  <Text style={styles.name}>{product.name}</Text>
+                  <Text style={styles.name}>{product.nome}</Text>
                   <Text style={styles.unidade}>{product.unidade}</Text>
                 </View>
   
@@ -103,7 +94,7 @@ const ListProducts: React.FC = () => {
                   
                   <Text style={styles.qtdProduto}>{qtdLaranja}</Text>
                   
-                  <TouchableOpacity onPress={() => {}}>
+                  <TouchableOpacity onPress={subQuantity}>
                     <Icon name='minus-circle' style={styles.qtdButton} />
                   </TouchableOpacity>
                 </View>

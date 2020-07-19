@@ -16,7 +16,13 @@ export default function Routes() {
     config: {
       screens: {
         Home: 'home',
-        ListProducts: 'list-products',
+        ListProducts: {
+          path: 'list-products/:feiranteId/:clienteId',
+          parse: {
+            feiranteId: (feiranteId) => `feiranteId-${feiranteId}`,
+            clienteId: (clienteId) => `clienteId-${clienteId}`,
+          },
+        },
       }
     }
   };
