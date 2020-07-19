@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './pages/Home';
 import ListProductsScreen from './pages/ListProducts';
+import Select from './pages/Select';
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,7 @@ export default function Routes() {
       }}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="ListProducts" component={ListProductsScreen} />
+        <Stack.Screen name="Select" component={Select} />
       </Stack.Navigator>
     </NavigationContainer>
   );

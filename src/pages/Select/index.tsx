@@ -6,7 +6,11 @@ import QRCode from 'react-native-qrcode-svg';
 
 import styles from './styles';
 
-const Home: React.FC = ({ navigation }) => {
+function handleWhatsApp() {
+  Linking.openURL(`whatsapp://send?phone=551148377404&text=furry-time`);
+}
+
+const Select: React.FC = () => {
   const [qrCode, setQrCode] = useState('furry-time');
 
   return(
@@ -18,19 +22,34 @@ const Home: React.FC = ({ navigation }) => {
           <Text style={styles.secondTitle}>Feira</Text>
           <Image source={require('../../assets/abacaxi.png')} style={styles.image} />
         </View>
-        <Text style={styles.subTitle}>Alimento saudável sem sair de casa</Text>
+        <Text style={styles.subTitle}>Encontre pequenos produtores e feirantes locais</Text>
       </View>
 
       <View style={styles.containerButton}>
+        <View style={styles.aroundQrCode}>
+          <QRCode 
+            value={qrCode}
+            size={150}
+            backgroundColor='#fff'
+          />
+        </View>
+
         <RectButton
-          onPress={() => navigation.navigate('Select')}
+          onPress={handleWhatsApp}
           style={styles.button}
         >
-          <Text style={styles.textButton}>Começar</Text>
+          <Text style={styles.textButton}>Encontrar feirante</Text>
+        </RectButton>
+
+        <RectButton
+          onPress={() => {}}
+          style={styles.registerButton}
+        >
+          <Text style={styles.textResgister}>Cadastrar</Text>
         </RectButton>
       </View>
     </View>
   );
 }
 
-export default Home;
+export default Select;
